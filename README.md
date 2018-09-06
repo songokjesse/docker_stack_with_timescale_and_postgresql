@@ -35,7 +35,7 @@ A step by step series of examples that tell you how to get a development env run
 
 2. download the images by running the following command
 ```
-- sudo docker-compose up
+- sudo docker-compose build
 ```
 
 Run the migrations
