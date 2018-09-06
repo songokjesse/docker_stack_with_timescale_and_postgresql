@@ -19,8 +19,18 @@ Docker image with:
 - TimescaleDB: 0.10.1 
 ```
 # Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+### For Use in a Docker Swarm
+
+This example only works on a Docker Swarm of version 1.12 or
+greater. Please see link:https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm 
+for details on setting up a test Docker Swarm cluster.
+```
+docker stack deploy --compose-file=./docker-swarm.yml pg-stack
+```
+
+ 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
