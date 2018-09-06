@@ -1,7 +1,7 @@
 # Docker Stack With Postgresql, Postgis and TimeScaleDB
 A Django REST API Docker Stack with TimescaleDB and Postgresql/Postgis Backend
 
-What it the repository has
+What the repository has
 #REST API
 ```
 - Django Framwork => 2.1
