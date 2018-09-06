@@ -21,15 +21,6 @@ Docker image with:
 # Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### For Use in a Docker Swarm
-
-This example only works on a Docker Swarm of version 1.12 or
-greater. Please see link:https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm 
-for details on setting up a test Docker Swarm cluster.
-```
-docker stack deploy --compose-file=./docker-swarm.yml pg-stack
-```
-
  
 ### Installing
 
@@ -42,6 +33,15 @@ A step by step series of examples that tell you how to get a development env run
 - git clone https://github.com/songokjesse/docker_stack_with_timescale_and_postgresql.git
 - cd docker_stack_with_timescale_and_postgresql
 ```
+### For Use in a Docker Swarm
+
+This example only works on a Docker Swarm of version 1.12 or
+greater. Please see link:https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm 
+for details on setting up a test Docker Swarm cluster.
+```
+docker stack deploy --compose-file=./docker-compose.yml pg-stack
+```
+
 
 2. download the images by running the following command
 ```

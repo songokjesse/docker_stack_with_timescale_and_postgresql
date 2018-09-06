@@ -5,6 +5,16 @@ services:
     image: binakot/postgresql-postgis-timescaledb
     environment:
       POSTGRES_PASSWORD: test123
+    ports:
+      - "5432"
+    volumes:
+      - db-data:/pgdata
+    networks:
+      - dbconnetNet
+    deploy:
+      replicas: 6
+      restart_policy:
+        condition: on-failure
   web:
     build: .
     command: python3 src/MyDjangoProject/manage.py runserver 0.0.0.0:8000
@@ -12,5 +22,13 @@ services:
       - .:/code
     ports:
       - "8000:8000"
+    networks:
+      - dbconnetNet
     depends_on:
       - db
+
+networks:
+  dbconnetNet:
+
+volumes:
+  db-data:
