@@ -26,6 +26,7 @@ These instructions will get you a copy of the project up and running on your loc
 A step by step series of examples that tell you how to get a development env running
 
 #Setup
+
 1. Clone the repository
 ```
 - git clone https://github.com/songokjesse/docker_stack_with_timescale_and_postgresql.git
@@ -49,3 +50,17 @@ Create SuperUser
 sudo docker-compose run web python src/MyDjangoProject/manage.py createsuperuser```
     
 ```
+3. Start the application
+```
+- sudo docker-compose up
+```
+4. Access the admin dashboard using 
+```
+http://127.0.0.0:8000/admin
+```
+5. Access the REST API using 
+```
+http://127.0.0.0:8000/api
+```
+# ScreenShot
+![Screen-Shot](screenshot.png)
