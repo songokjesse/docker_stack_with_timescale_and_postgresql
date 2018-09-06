@@ -1,0 +1,40 @@
+version: "3.3"
+
+services:
+  primary:
+    hostname: 'primary'
+    image: binakot/postgresql-postgis-timescaledb
+    environment:
+      POSTGRES_PASSWORD: test123
+    volumes:
+    - pg-primary-vol:/pgdata
+    ports:
+    - "5432"
+    networks:
+    - dbconnetNet
+    deploy:
+      placement:
+        constraints:
+        - node.labels.type == primary
+        - node.role == worker
+  replica:
+    image: binakot/postgresql-postgis-timescaledb
+    environment:
+      POSTGRES_PASSWORD: test123
+    volumes:
+    - pg-replica-vol:/pgdata
+    ports:
+    - "5432"
+    networks:
+    - dbconnetNet
+    deploy:
+      placement:
+        constraints:
+        - node.labels.type != primary
+        - node.role == worker
+networks:
+  dbconnetNet:
+
+volumes:
+  pg-primary-vol:
+  pg-replica-vol:
