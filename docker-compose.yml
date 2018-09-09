@@ -5,21 +5,40 @@ services:
     image: binakot/postgresql-postgis-timescaledb
     ports:
       - "5432"
+    env_file:  
+      - config/db/db_env
     volumes:
       - db-data:/pgdata
+    networks:
+      - db_network
     deploy:
       replicas: 2
       restart_policy:
         condition: on-failure
+  nginx:
+    image: nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - web
+    networks:
+      - nginx_network
   web:
-    image: jessesongok/docker_django_app_web
-    command: python3 src/MyDjangoProject/manage.py runserver 0.0.0.0:8000
+    build: .
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn MyDjangoProject.wsgi -b 0.0.0.0:8000"
     volumes:
       - .:/code
-    ports:
-      - "8000:8000"
     depends_on:
       - db
+    networks:
+      - db_network
+networks:
+  nginx_network:
+     driver: bridge
+  db_network:
+     driver: bridge
 
 volumes:
   db-data:
