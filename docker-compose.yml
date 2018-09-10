@@ -27,15 +27,16 @@ services:
       - nginx_network
   web:
     build: .
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn MyDjangoProject.wsgi -b 0.0.0.0:8000"
+    command: bash -c "python src/MyDjangoProject/manage.py makemigrations && python src/MyDjangoProject/manage.py migrate && gunicorn src/MyDjangoProject.wsgi:application -b 0.0.0.0:8000"
     volumes:
       - .:/code
     depends_on:
       - db
     networks:
-      - db_network
       - nginx_network
+      - db_network
       
+
 networks:
   nginx_network:
      driver: bridge
