@@ -27,7 +27,7 @@ services:
       - nginx_network
   web:
     build: .
-    command: bash -c "python src/MyDjangoProject/manage.py makemigrations && python src/MyDjangoProject/manage.py migrate && gunicorn src/MyDjangoProject.wsgi:application -b 0.0.0.0:8000"
+    command: bash -c "python src/MyDjangoProject/manage.py makemigrations && python src/MyDjangoProject/manage.py migrate && gunicorn --chdir src/MyDjangoProject MyDjangoProject.wsgi:application -b 0.0.0.0:8000"
     volumes:
       - .:/code
     depends_on:
